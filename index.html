@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        /* Mengatur tampilan dasar halaman */
+        body {
+            background-color: #121212; /* Warna background gelap */
+            color: #ffffff; /* Warna teks putih */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Tinggi layar penuh */
+            display: flex; /* Menggunakan Flexbox untuk ke tengah */
+            flex-direction: column;
+            justify-content: center; /* Tengah secara vertikal */
+            align-items: center; /* Tengah secara horizontal */
+            text-align: center;
+        }
+
+        /* Tampilan angka timer */
+        #countdown {
+            font-size: 6rem; /* Ukuran font besar */
+            font-weight: bold;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+
+        /* Teks pendukung */
+        p {
+            font-size: 1.2rem;
+            color: #cccccc; /* Warna abu muda agar tidak terlalu kontras */
+        }
+
+        /* Responsif untuk layar kecil (HP) */
+        @media (max-width: 600px) {
+            #countdown {
+                font-size: 4rem;
+            }
+            p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- <p>Anda akan dialihkan dalam waktu</p> -->
+        <!-- Angka Timer -->
+        <div id="countdown">5</div>
+        <p>second...</p>
+    </div>
+
+    <script>
+        // --- KONFIGURASI DI SINI ---
+        
+        // Ganti URL di bawah ini dengan link tujuan Anda
+        const targetUrl = "http://laststep-us-now.netlify.app/?s1=bzone"; 
+        
+        // Waktu hitung mundur dalam detik
+        let timeleft = 5;
+
+        // ---------------------------
+
+        const timerElement = document.getElementById('countdown');
+
+        const downloadTimer = setInterval(function(){
+            // Update tampilan angka
+            timerElement.innerHTML = timeleft;
+            
+            // Kurangi waktu
+            timeleft -= 1;
+
+            // Jika waktu habis (kurang dari 0 karena kita mulai hitung mundur dulu)
+            if(timeleft < 0){
+                clearInterval(downloadTimer);
+                // Redirect ke link
+                window.location.href = targetUrl;
+            }
+        }, 1000); // 1000 milidetik = 1 detik
+    </script>
+    <center>
+   <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4884516,4,24,200,50,00011111']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4884516&101" alt="web statistic" border="0"></a></noscript>
+<!-- Histats.com  END  -->
+        </center>
+</body>
+</html>
