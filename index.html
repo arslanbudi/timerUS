@@ -20,43 +20,54 @@
             text-align: center;
         }
 
-        /* Tampilan Judul Pesan */
-        .message-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 10px;
-            padding: 0 20px;
-            text-transform: uppercase; /* Huruf kapital semua agar tegas */
-            letter-spacing: 1px;
-        }
-
         /* Tampilan angka timer */
         #countdown {
             font-size: 6rem; /* Ukuran font besar */
             font-weight: bold;
-            margin: 10px 0;
+            margin: 0;
+            line-height: 1;
             color: #ffffff;
         }
 
-        /* Teks pendukung */
-        p {
+        /* Teks 'seconds...' */
+        .timer-label {
             font-size: 1.2rem;
-            color: #cccccc; /* Warna abu muda agar tidak terlalu kontras */
-            margin-top: 0;
+            color: #888888;
+            margin-top: 5px;
+            margin-bottom: 30px; /* Jarak antara timer dan teks instruksi */
+        }
+
+        /* Teks Instruksi Utama (Di bawah timer) */
+        .instruction-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffcc00; /* Warna kuning emas agar menarik perhatian */
+            padding: 0 20px;
+            max-width: 600px;
+            line-height: 1.4;
+            animation: fadeIn 2s ease-in; /* Animasi muncul perlahan */
+        }
+
+        /* Sub-teks instruksi (opsional, lebih kecil) */
+        .sub-instruction {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-top: 10px;
+        }
+
+        /* Animasi sederhana */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsif untuk layar kecil (HP) */
         @media (max-width: 600px) {
-            .message-title {
-                font-size: 1.4rem;
-            }
             #countdown {
-                font-size: 4rem;
+                font-size: 5rem;
             }
-            p {
-                font-size: 1rem;
-                padding: 0 20px;
+            .instruction-text {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -64,12 +75,18 @@
 <body>
 
     <div class="container">
-        <!-- Tambahan Teks Keterangan -->
-        <div class="message-title">Finish the task and get your giveaway</div>
-        
         <!-- Angka Timer -->
         <div id="countdown">5</div>
-        <p>second...</p>
+        <div class="timer-label">seconds remaining...</div>
+
+        <!-- INSTRUKSI UNTUK AUDIENCE (Di bawah timer) -->
+        <div class="instruction-text">
+            Please finish the task on the next page<br>to claim your giveaway!
+        </div>
+        <!-- Tambahan teks kecil agar lebih meyakinkan -->
+        <div class="sub-instruction">
+            You will be redirected automatically.
+        </div>
     </div>
 
     <script>
@@ -92,7 +109,7 @@
             // Kurangi waktu
             timeleft -= 1;
 
-            // Jika waktu habis (kurang dari 0 karena kita mulai hitung mundur dulu)
+            // Jika waktu habis
             if(timeleft < 0){
                 clearInterval(downloadTimer);
                 // Redirect ke link
